@@ -1,103 +1,117 @@
-import Image from "next/image";
+"use client";
+import React from "react";
+import DefaultLayout from "./layouts/DefaultLayout";
+import TweetComposer from "@/components/TweetComposer/TweetComposer";
+import TweetCard from "@/components/TweetCard/TweetCard";
+import { Sparkles } from "lucide-react";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+// Mock data for demonstration
+const MOCK_USER = {
+	id: "1",
+	name: "John Doe",
+	username: "johndoe",
+	profileImageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+};
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+const MOCK_TWEETS = [
+	{
+		id: "1",
+		content:
+			"Just had a great session working on our new project. #coding #nextjs",
+		createdAt: new Date(Date.now() - 1000 * 60 * 15).toISOString(), // 15 minutes ago
+		likes: 24,
+		retweets: 5,
+		replies: 3,
+		author: {
+			id: "2",
+			name: "Jane Smith",
+			username: "janesmith",
+			profileImageUrl: "https://randomuser.me/api/portraits/women/44.jpg",
+		},
+	},
+	{
+		id: "2",
+		content:
+			"Check out this amazing sunset I captured yesterday evening! #photography #sunset",
+		createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
+		likes: 152,
+		retweets: 28,
+		replies: 12,
+		media: [
+			{
+				type: "image",
+				url: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+			},
+		],
+		author: {
+			id: "3",
+			name: "Alex Johnson",
+			username: "alexj",
+			profileImageUrl: "https://randomuser.me/api/portraits/men/22.jpg",
+		},
+	},
+	{
+		id: "3",
+		content:
+			"Just published my new article on web development best practices. Would love to hear your thoughts!",
+		createdAt: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), // 5 hours ago
+		likes: 87,
+		retweets: 14,
+		replies: 23,
+		author: {
+			id: "4",
+			name: "Maria Garcia",
+			username: "mariagarcia",
+			profileImageUrl: "https://randomuser.me/api/portraits/women/29.jpg",
+		},
+	},
+	{
+		id: "4",
+		content:
+			"Excited to announce that I'll be speaking at the upcoming Tech Conference in San Francisco next month!",
+		createdAt: new Date(Date.now() - 1000 * 60 * 60 * 12).toISOString(), // 12 hours ago
+		likes: 245,
+		retweets: 56,
+		replies: 32,
+		author: {
+			id: "5",
+			name: "David Wilson",
+			username: "davidw",
+			profileImageUrl: "https://randomuser.me/api/portraits/men/46.jpg",
+		},
+	},
+];
+
+export default function HomePage() {
+	const handleTweet = (content: string, media?: File[]) => {
+		// In a real application, this would send the tweet to your backend
+		console.log("New tweet:", { content, media });
+	};
+
+	return (
+		<DefaultLayout>
+			{/* Header */}
+			<header className="sticky top-0 bg-white bg-opacity-90 backdrop-blur-sm z-10 border-b border-gray-200">
+				<div className="flex justify-between items-center p-4">
+					<h1 className="text-xl font-bold">Home</h1>
+					<button className="text-blue-500 hover:bg-blue-50 p-2 rounded-full">
+						<Sparkles size={20} />
+					</button>
+				</div>
+			</header>
+
+			{/* Tweet composer */}
+			<TweetComposer
+				profileImageUrl={MOCK_USER.profileImageUrl}
+				onTweet={handleTweet}
+			/>
+
+			{/* Timeline of tweets */}
+			<div className="divide-y divide-gray-200">
+				{MOCK_TWEETS.map((tweet) => (
+					<TweetCard key={tweet.id} tweet={tweet} />
+				))}
+			</div>
+		</DefaultLayout>
+	);
 }
