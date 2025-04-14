@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Home, Bell, Mail, User, Search, Hash } from "lucide-react";
+import { Home, Bell, Mail, User, Hash } from "lucide-react";
 
 export default function SidebarNavigation() {
 	return (
