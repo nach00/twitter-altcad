@@ -69,7 +69,7 @@ const CONVERSATIONS = [
 ];
 
 // Helper function to format date for messages
-const formatMessageDate = (dateString) => {
+const formatMessageDate = (dateString: string) => {
 	const date = new Date(dateString);
 	const now = new Date();
 
