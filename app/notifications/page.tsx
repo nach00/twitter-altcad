@@ -137,11 +137,11 @@ export default function NotificationsPage() {
 
 								{notification.tweet && (
 									<p className="mt-1 text-gray-800">
-										"
+										&quot;
 										{notification.tweet.content.length > 60
 											? notification.tweet.content.substring(0, 60) + "..."
 											: notification.tweet.content}
-										"
+										&quot;
 									</p>
 								)}
 							</div>
