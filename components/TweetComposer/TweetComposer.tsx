@@ -24,7 +24,6 @@ export default function TweetComposer({
 
 		try {
 			// Call onTweet callback function if provided
-			//
 			if (onTweet) {
 				await onTweet(content, selectedMedia);
 			}
