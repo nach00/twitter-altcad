@@ -1,0 +1,92 @@
+.loginContainer,
+.signupContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #f7f9fa;
+}
+
+.loginForm,
+.signupForm {
+	background-color: white;
+	border-radius: 15px;
+	padding: 30px;
+	width: 100%;
+	max-width: 400px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginForm h1,
+.signupForm h1 {
+	font-size: 24px;
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.formGroup {
+	margin-bottom: 16px;
+}
+
+.formGroup label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 500;
+}
+
+.formGroup input {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #e1e8ed;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.loginForm button,
+.signupForm button {
+	width: 100%;
+	padding: 12px;
+	background-color: #1da1f2;
+	color: white;
+	border: none;
+	border-radius: 50px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 16px;
+}
+
+.loginForm button:hover,
+.signupForm button:hover {
+	background-color: #1a91da;
+}
+
+.loginForm button:disabled,
+.signupForm button:disabled {
+	background-color: #9ad2f9;
+	cursor: not-allowed;
+}
+
+.errorMessage {
+	color: #e0245e;
+	margin-bottom: 16px;
+	text-align: center;
+}
+
+.signupLink,
+.loginLink {
+	margin-top: 16px;
+	text-align: center;
+}
+
+.signupLink a,
+.loginLink a {
+	color: #1da1f2;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.signupLink a:hover,
+.loginLink a:hover {
+	text-decoration: underline;
+}
