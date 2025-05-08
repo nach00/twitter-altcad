@@ -11,3 +11,70 @@ Migrating to CreateUsers (20250508042658)
   [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250508042658') RETURNING "version" /*application='TwitterAltcadApi'*/[0m
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TwitterAltcadApi'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'johndoe' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'johndoe' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "email", "password_digest", "created_at", "updated_at") VALUES ('John Doe', 'johndoe', 'john@example.com', '$2a$12$0n0f.VJlmdA13iwRnbNZLurVzdLVBu0lRiDgQ9Z7Ekgla1Nx8fVF2', '2025-05-08 06:38:19.927215', '2025-05-08 06:38:19.927215') RETURNING "id" /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'janedoe' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'jane@example.com' LIMIT 1 /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "email", "password_digest", "created_at", "updated_at") VALUES ('Jane Doe', 'janedoe', 'jane@example.com', '$2a$12$TKru4hDvEO8a/otTof0AU.nj4zdMLw/P.g8GVnRliz9MwO6YVaR2C', '2025-05-08 06:38:20.182429', '2025-05-08 06:38:20.182429') RETURNING "id" /*application='TwitterAltcadApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TwitterAltcadApi'*/[0m
+  [1m[36mUser Load (8.9ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT 11 /*application='TwitterAltcadApi'*/[0m
+Started GET "/_next/static/chunks/node_modules_next_dist_client_8f19e6fb._.js.map" for 127.0.0.1 at 2025-05-08 01:50:20 -0500
+Started GET "/_next/static/chunks/app_globals_73c37791.css?ts=1746687020644" for 127.0.0.1 at 2025-05-08 01:50:20 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/_next/static/chunks/node_modules_next_dist_client_8f19e6fb._.js.map"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_next/static/chunks/app_globals_73c37791.css"):
+  
+Started GET "/_next/static/chunks/_93808211._.js.map" for 127.0.0.1 at 2025-05-08 01:50:20 -0500
+Started POST "/__nextjs_original-stack-frames" for 127.0.0.1 at 2025-05-08 01:50:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_next/static/chunks/_93808211._.js.map"):
+  
+  
+ActionController::RoutingError (No route matches [POST] "/__nextjs_original-stack-frames"):
+  
+Started POST "/api/login" for 127.0.0.1 at 2025-05-08 01:50:24 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/login"):
+  
+Started POST "/api/login" for 127.0.0.1 at 2025-05-08 01:50:25 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/login"):
+  
+Started GET "/__nextjs_font/geist-mono-latin.woff2" for 127.0.0.1 at 2025-05-08 01:59:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/__nextjs_font/geist-mono-latin.woff2"):
+  
+Started GET "/login" for 127.0.0.1 at 2025-05-08 01:59:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-05-08 01:59:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/login" for 127.0.0.1 at 2025-05-08 01:59:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/login" for 127.0.0.1 at 2025-05-08 02:01:24 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/login" for 127.0.0.1 at 2025-05-08 02:01:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  

@@ -41,6 +41,6 @@ module TwitterAltcadApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.jwt_secret_key = Rails.env.production? ? ENV["JWT_SECRET_KEY"] : File.read(Rails.root.join("key"))
+    config.jwt_secret_key = Rails.env.production? ? ENV["JWT_SECRET_KEY"] : File.read(Rails.root.join("config/key"))
   end
 end
