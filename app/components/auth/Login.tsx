@@ -2,10 +2,20 @@
 
 import React, { useState, FormEvent, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
-import { login } from "../../lib/auth";
+import { login } from "../../lib/auth"; // Assuming login might throw an error with a 'message' property
 import { useAuth } from "../../contexts/AuthContext";
 import Link from "next/link";
 import styles from "../../styles/auth.module.css";
+
+// // Define a type for the expected error structure from your login function if it's not a standard Error
+// interface AuthError extends Error {
+//     // Add any other properties your error object might have
+// }
+
+// Or, more generally, if you expect an object with a message property:
+interface ErrorWithMessage {
+	message: string;
+}
 
 const Login: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
@@ -23,12 +33,31 @@ const Login: React.FC = () => {
 
 		try {
 			const userData = await login(email, password);
+			// Assuming setCurrentUser expects the type of userData returned by login
 			setCurrentUser(userData);
 			router.push("/");
-		} catch (err: any) {
-			setError(
-				err.message || "Failed to login. Please check your credentials.",
-			);
+		} catch (caughtError: unknown) {
+			// Changed from 'err: any' to 'caughtError: unknown'
+			let errorMessage = "Failed to login. Please check your credentials."; // Default message
+
+			if (caughtError instanceof Error) {
+				errorMessage = caughtError.message || errorMessage;
+			} else if (
+				typeof caughtError === "object" &&
+				caughtError !== null &&
+				"message" in caughtError &&
+				typeof (caughtError as ErrorWithMessage).message === "string"
+			) {
+				// Handles errors that are objects with a message property but not necessarily Error instances
+				errorMessage =
+					(caughtError as ErrorWithMessage).message || errorMessage;
+			} else if (typeof caughtError === "string") {
+				// Handles cases where a plain string is thrown
+				errorMessage = caughtError || errorMessage;
+			}
+			// If the error is of a different unexpected type, the default message will be used.
+
+			setError(errorMessage);
 		} finally {
 			setLoading(false);
 		}
@@ -74,7 +103,12 @@ const Login: React.FC = () => {
 				</form>
 
 				<div className={styles.signupLink}>
-					Don't have an account? <Link href="/signup">Sign up</Link>
+					{/* If the error "react/no-unescaped-entities" at 77:9 was for an apostrophe in "Don't have an account?" or similar,
+                        you would change it to "Don&apos;t have an account?".
+                        The current text "No account?" does not have this issue.
+                        Please ensure the line 77 error from your build log is addressed if it's still present.
+                    */}
+					No account? <Link href="/signup">Sign up</Link>
 				</div>
 			</div>
 		</div>
