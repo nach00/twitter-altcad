@@ -126,10 +126,11 @@ export default function HomePage() {
 			{/* Header Section */}
 			<header className="sticky top-0 bg-white dark:bg-gray-900 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md z-10 border-b border-gray-200 dark:border-gray-700">
 				<div className="container mx-auto flex justify-between items-center p-4">
-					<Link href="/" legacyBehavior>
-						<a className="text-xl font-bold text-gray-900 dark:text-white">
-							Home
-						</a>
+					<Link
+						href="/"
+						className="text-xl font-bold text-gray-900 dark:text-white"
+					>
+						Home
 					</Link>
 					<div className="flex items-center space-x-2 sm:space-x-4">
 						{loading ? (
@@ -150,15 +151,17 @@ export default function HomePage() {
 							</>
 						) : (
 							<>
-								<Link href="/login" legacyBehavior>
-									<a className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 rounded-md text-sm sm:text-base transition-colors">
-										Login
-									</a>
+								<Link
+									href="/login"
+									className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 rounded-md text-sm sm:text-base transition-colors"
+								>
+									Login
 								</Link>
-								<Link href="/signup" legacyBehavior>
-									<a className="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 rounded-md text-sm sm:text-base transition-colors">
-										Sign Up
-									</a>
+								<Link
+									href="/signup"
+									className="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 rounded-md text-sm sm:text-base transition-colors"
+								>
+									Sign Up
 								</Link>
 							</>
 						)}
@@ -183,16 +186,18 @@ export default function HomePage() {
 				// Prompt to login/signup if not authenticated
 				<div className="p-4 border-b border-gray-200 dark:border-gray-700 text-center bg-gray-50 dark:bg-gray-800">
 					<p className="text-gray-700 dark:text-gray-300">
-						<Link href="/login" legacyBehavior>
-							<a className="text-blue-500 hover:underline font-semibold">
-								Login
-							</a>
+						<Link
+							href="/login"
+							className="text-blue-500 hover:underline font-semibold"
+						>
+							Login
 						</Link>{" "}
 						or{" "}
-						<Link href="/signup" legacyBehavior>
-							<a className="text-blue-500 hover:underline font-semibold">
-								Sign Up
-							</a>
+						<Link
+							href="/signup"
+							className="text-blue-500 hover:underline font-semibold"
+						>
+							Sign Up
 						</Link>{" "}
 						to post.
 					</p>

@@ -1085,3 +1085,59 @@ Completed 201 Created in 284ms (Views: 0.6ms | ActiveRecord: 4.4ms (3 queries, 0
 
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 03:39:37 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001312f3c08>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001312f3c08>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 202 Accepted in 275ms (Views: 1.1ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 03:40:02 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000131452090>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000131452090>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.82ms)
+Completed 202 Accepted in 267ms (Views: 4.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 03:43:41 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001314b1720>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001314b1720>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.49ms)
+Completed 202 Accepted in 270ms (Views: 1.5ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 03:44:12 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000122ccaa10>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000122ccaa10>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.76ms)
+Completed 202 Accepted in 281ms (Views: 3.2ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 9.9ms)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 03:47:47 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001224eb600>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x00000001224eb600>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.34ms)
+Completed 202 Accepted in 258ms (Views: 6.4ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
