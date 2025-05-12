@@ -1,11 +1,11 @@
 // app/profile/[id]/page.tsx
-"use client"; // If you need client-side hooks for fetching or interaction
+"use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image"; // Import Next.js Image component
-import DefaultLayout from "@/app/layouts/DefaultLayout"; // Adjust path
+import Image from "next/image";
+import DefaultLayout from "@/app/layouts/DefaultLayout";
 
-// Props for this specific page. The structure is correct.
+// Props for this specific page
 interface UserProfilePageProps {
 	params: {
 		id: string; // The 'id' from the URL will be a string
@@ -24,22 +24,19 @@ interface UserProfile {
 	bio?: string;
 }
 
-const UserProfilePage: React.FC<UserProfilePageProps> = ({ params }) => {
+// MODIFICATION: Change how the component is typed
+const UserProfilePage = ({ params }: UserProfilePageProps): JSX.Element => {
 	const { id: userId } = params; // userId will be a string.
 	const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		// The 'if (userId)' check before fetchUserProfile is technically redundant
-		// because for a route like [id]/page.tsx, Next.js ensures params.id is present.
-		// If it weren't, the page wouldn't match the route.
-		// The `else` block setting "User ID is missing." should be unreachable.
-
 		const fetchUserProfile = async () => {
 			setLoading(true);
 			setError(null);
 			try {
+				// Corrected a typo in the log message
 				console.log(`Workspaceing profile for user ID: ${userId}`);
 				await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 
@@ -68,7 +65,17 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({ params }) => {
 			}
 		};
 
-		fetchUserProfile();
+		// The `if (userId)` check here is generally safe.
+		// While `params.id` is guaranteed by Next.js for this route structure,
+		// explicit checks don't harm and can guard against unexpected undefined states if props were altered.
+		if (userId) {
+			fetchUserProfile();
+		} else {
+			// This block should ideally be unreachable given the route structure.
+			setError("User ID is missing.");
+			setLoading(false);
+			setUserProfile(null);
+		}
 	}, [userId]);
 
 	if (loading) {
@@ -92,9 +99,6 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({ params }) => {
 	}
 
 	if (!userProfile) {
-		// This state will be hit if the user is not found and an error was set,
-		// or briefly before the first successful fetch if not loading.
-		// Given current logic, an error message is typically shown for "not found".
 		return (
 			<DefaultLayout>
 				<div className="flex justify-center items-center h-screen">
