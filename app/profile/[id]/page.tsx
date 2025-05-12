@@ -3,15 +3,15 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image"; // Import Next.js Image component
-// You'll likely need your User type
-// import { User } from "../../types/auth"; // Adjust path as needed
-// You might also want to use your DefaultLayout
 import DefaultLayout from "@/app/layouts/DefaultLayout"; // Adjust path
 
-interface ProfilePageParams {
+// Props for this specific page. The structure is correct.
+interface UserProfilePageProps {
 	params: {
 		id: string; // The 'id' from the URL will be a string
 	};
+	// If you ever need searchParams, you can add them:
+	// searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 // Define a simple User type for this example
@@ -24,65 +24,51 @@ interface UserProfile {
 	bio?: string;
 }
 
-const UserProfilePage: React.FC<ProfilePageParams> = ({ params }) => {
-	const { id: userId } = params;
+const UserProfilePage: React.FC<UserProfilePageProps> = ({ params }) => {
+	const { id: userId } = params; // userId will be a string.
 	const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (userId) {
-			const fetchUserProfile = async () => {
-				setLoading(true);
-				setError(null);
-				try {
-					// Replace with your actual API call to fetch user data by ID
-					// const response = await fetch(`/api/users/${userId}`); // Example API endpoint
-					// if (!response.ok) {
-					//     throw new Error('Failed to fetch user profile');
-					// }
-					// const data: UserProfile = await response.json();
-					// setUserProfile(data);
+		// The 'if (userId)' check before fetchUserProfile is technically redundant
+		// because for a route like [id]/page.tsx, Next.js ensures params.id is present.
+		// If it weren't, the page wouldn't match the route.
+		// The `else` block setting "User ID is missing." should be unreachable.
 
-					// For demonstration, using mock data:
-					console.log(`Workspaceing profile for user ID: ${userId}`);
-					// Simulate API call
-					await new Promise((resolve) => setTimeout(resolve, 1000));
+		const fetchUserProfile = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				console.log(`Workspaceing profile for user ID: ${userId}`);
+				await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 
-					if (userId === "3") {
-						// Example: only user "3" exists for demo
-						setUserProfile({
-							id: "3",
-							name: "Mock User Three",
-							username: "userthree",
-							email: "user3@example.com",
-							bio: "This is the bio of user three.",
-							profileImageUrl:
-								"https://randomuser.me/api/portraits/women/3.jpg",
-						});
-					} else {
-						// Simulate user not found
-						setUserProfile(null); // Set to null if user not found
-						throw new Error(`User with ID ${userId} not found.`);
-					}
-				} catch (err: unknown) {
-					// <-- Changed from 'any' to 'unknown'
-					if (err instanceof Error) {
-						setError(err.message);
-					} else {
-						setError("An unexpected error occurred");
-					}
-					setUserProfile(null);
-				} finally {
-					setLoading(false);
+				if (userId === "3") {
+					setUserProfile({
+						id: "3",
+						name: "Mock User Three",
+						username: "userthree",
+						email: "user3@example.com",
+						bio: "This is the bio of user three.",
+						profileImageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+					});
+				} else {
+					setUserProfile(null); // Ensure userProfile is null on error
+					throw new Error(`User with ID ${userId} not found.`);
 				}
-			};
-			fetchUserProfile();
-		} else {
-			// Handle the case where userId is not available (e.g., redirect or show error)
-			setLoading(false);
-			setError("User ID is missing.");
-		}
+			} catch (err: unknown) {
+				if (err instanceof Error) {
+					setError(err.message);
+				} else {
+					setError("An unexpected error occurred");
+				}
+				setUserProfile(null); // Ensure userProfile is null on any error
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchUserProfile();
 	}, [userId]);
 
 	if (loading) {
@@ -106,6 +92,9 @@ const UserProfilePage: React.FC<ProfilePageParams> = ({ params }) => {
 	}
 
 	if (!userProfile) {
+		// This state will be hit if the user is not found and an error was set,
+		// or briefly before the first successful fetch if not loading.
+		// Given current logic, an error message is typically shown for "not found".
 		return (
 			<DefaultLayout>
 				<div className="flex justify-center items-center h-screen">
@@ -121,13 +110,13 @@ const UserProfilePage: React.FC<ProfilePageParams> = ({ params }) => {
 				<div className="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-6 md:p-8 max-w-2xl mx-auto">
 					{userProfile.profileImageUrl && (
 						<div className="flex justify-center mb-6">
-							<Image // <-- Replaced <img> with <Image>
+							<Image
 								src={userProfile.profileImageUrl}
 								alt={`${userProfile.name}'s profile picture`}
-								width={128} // Provide explicit width
-								height={128} // Provide explicit height
+								width={128}
+								height={128}
 								className="w-32 h-32 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
-								priority // Add priority if it's an LCP element
+								priority
 							/>
 						</div>
 					)}
