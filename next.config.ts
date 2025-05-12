@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	/* config options here */
 	images: {
 		remotePatterns: [
 			{
@@ -14,7 +13,6 @@ const nextConfig: NextConfig = {
 				hostname: "images.unsplash.com",
 				pathname: "/**", // Allow any path from this hostname
 			},
-			// Add other allowed hostnames here if needed
 		],
 	},
 };

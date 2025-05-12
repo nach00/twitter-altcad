@@ -1,8 +1,11 @@
 # app/controllers/api/v1/auth_controller.rb
 module Api
   module V1
-    class AuthController < ApplicationController
+    class AuthenticationController < ApplicationController
       skip_before_action :authorized, only: [ :create ] # Don't require login to log in
+
+
+
 
       # POST /api/v1/login
       def create
