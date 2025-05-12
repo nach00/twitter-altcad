@@ -2,6 +2,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :users, only: [ :create, :show, :index ]
+      resources :tweets, only: [ :index, :create, :destroy ]
+      resources :sessions, only: [ :create, :destroy ] # Covers POST /api/v1/sessions
+      resources :likes, only: [ :create, :destroy ]
+      resources :bookmarks, only: [ :create, :destroy ]
+      resources :follows, only: [ :create, :destroy ]
       resources :users, only: [ :create ] # For signup: POST /api/v1/users
       # post "/login", to: "auth#create"     # For login: POST /api/v1/login
       post "/login", to: "authentication#login"

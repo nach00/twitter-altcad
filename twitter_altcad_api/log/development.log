@@ -347,3 +347,633 @@ puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
 puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
 puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
 puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:16:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  
+AbstractController::ActionNotFound (The action 'login' could not be found for Api::V1::AuthenticationController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:46:39 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The create action could not be found for the :authorized
+callback on Api::V1::AuthenticationController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:390:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'Array#all?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:108:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:47:57 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The create action could not be found for the :authorized
+callback on Api::V1::AuthenticationController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:390:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'Array#all?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:108:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:51:04 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The create action could not be found for the :authorized
+callback on Api::V1::AuthenticationController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:390:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'Array#all?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:108:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:54:15 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The create action could not be found for the :authorized
+callback on Api::V1::AuthenticationController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:390:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'Array#all?'
+activesupport (8.0.2) lib/active_support/callbacks.rb:177:in 'ActiveSupport::Callbacks::Filters::Before#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (8.0.2) lib/active_support/callbacks.rb:108:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 00:56:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+Completed 400 Bad Request in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty or invalid: auth):
+  
+app/controllers/api/v1/authentication_controller.rb:29:in 'Api::V1::AuthenticationController#login_params'
+app/controllers/api/v1/authentication_controller.rb:9:in 'Api::V1::AuthenticationController#login'
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 01:01:52 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000122b76920>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:9:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000122b76920>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.49ms)
+Completed 202 Accepted in 284ms (Views: 5.3ms | ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 1.8ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:02:14 -0500
+  
+AbstractController::ActionNotFound (The action 'signup' could not be found for Api::V1::AuthenticationController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.14) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.14) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.14) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.14) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.14) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:04:33 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:04:48 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:05:49 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:07:45 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:07:47 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:08:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (3.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 422 Unprocessable Content in 277ms (Views: 1.6ms | ActiveRecord: 6.5ms (2 queries, 0 cached) | GC: 1.9ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:09:17 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.02ms)
+Completed 422 Unprocessable Content in 269ms (Views: 0.2ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:13:02 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 422 Unprocessable Content in 250ms (Views: 1.1ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:15:19 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Content in 267ms (Views: 1.0ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:15:29 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TwitterAltcadApi'*/[0m
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (3.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 422 Unprocessable Content in 286ms (Views: 1.5ms | ActiveRecord: 6.0ms (2 queries, 0 cached) | GC: 10.2ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 01:15:32 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.02ms)
+Completed 422 Unprocessable Content in 242ms (Views: 0.2ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 02:26:46 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('bob@example.com') LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 422 Unprocessable Content in 278ms (Views: 0.6ms | ActiveRecord: 6.6ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/signup" for 127.0.0.1 at 2025-05-12 02:31:17 -0500
+Processing by Api::V1::AuthenticationController#signup as HTML
+  Parameters: {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}, "authentication" => {"user" => {"username" => "bob", "email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = 'bob' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "email", "password_digest", "created_at", "updated_at") VALUES (NULL, 'bob', 'bob@example.com', '$2a$12$BlTENRyTe9HsIB/1sbpBoOqkrQWS8YY/2C0Gi8WE012oATIIvepUm', '2025-05-12 07:31:17.364768', '2025-05-12 07:31:17.364768') RETURNING "id" /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='signup',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:20:in 'Api::V1::AuthenticationController#signup'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.19ms)
+Completed 201 Created in 284ms (Views: 4.9ms | ActiveRecord: 4.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2025-05-12 02:31:46 -0500
+Processing by Api::V1::AuthenticationController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000130cfe578>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='login',application='TwitterAltcadApi',controller='authentication'*/[0m
+  ↳ app/controllers/api/v1/authentication_controller.rb:8:in 'Api::V1::AuthenticationController#login'
+[31mUnpermitted parameter: :authentication. Context: { controller: Api::V1::AuthenticationController, action: login, request: #<ActionDispatch::Request:0x0000000130cfe578>, params: {"email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "api/v1/authentication", "action" => "login", "authentication" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 202 Accepted in 260ms (Views: 1.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+

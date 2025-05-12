@@ -51,3 +51,4 @@ gem "jwt", "~> 2.2" # Or a newer version
 gem "rack-cors"
 gem "active_model_serializers", "~> 0.10.0" # Or a newer version
 gem "neovim"
+gem "rubocop"

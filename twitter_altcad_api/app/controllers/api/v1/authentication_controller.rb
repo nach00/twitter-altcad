@@ -1,17 +1,12 @@
-# app/controllers/api/v1/auth_controller.rb
+# app/controllers/api/v1/authentication_controller.rb
 module Api
   module V1
     class AuthenticationController < ApplicationController
-      skip_before_action :authorized, only: [ :create ] # Don't require login to log in
-
-
-
-
+      skip_before_action :authorized, only: [ :login, :signup ]
       # POST /api/v1/login
-      def create
-        @user = User.find_by(username: login_params[:username]) # Or find_by(email: login_params[:email])
+      def login
+        @user = User.find_by(email: login_params[:email])
 
-        # User#authenticate method comes from has_secure_password
         if @user&.authenticate(login_params[:password])
           token = encode_token({ user_id: @user.id })
           render json: { user: UserSerializer.new(@user), jwt: token }, status: :accepted
@@ -20,16 +15,28 @@ module Api
         end
       end
 
-      # You might also want a 'get profile' or 'auto_login' endpoint
-      # GET /api/v1/profile
-      # def profile
-      #   render json: { user: UserSerializer.new(current_user) }, status: :accepted
-      # end
+      def signup
+        @user = User.new(signup_params)
+        if @user.save
+          token = encode_token({ user_id: @user.id })
+          render json: { user: UserSerializer.new(@user), jwt: token }, status: :created
+        else
+          puts "SIGNUP ERRORS: #{@user.errors.full_messages.inspect}" # Add this for debugging
+          render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
 
       private
 
       def login_params
-        params.require(:auth).permit(:username, :password) # Or :email instead of :username
+        params.permit(:email, :password)
+      end
+
+      def signup_params
+        # params.permit(:username, :email, :password, :password_confirmation)
+
+        # If your frontend sends params nested under a 'user' key:
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
       end
     end
   end
