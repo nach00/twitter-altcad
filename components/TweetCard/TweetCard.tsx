@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Tweet } from "@/types/tweet"; // Assuming this is your Tweet type path
+import { Tweet } from "@/app/types/tweet"; // Assuming this is your Tweet type path
 import { MessageCircle, Repeat, Heart, Share } from "lucide-react"; // Assuming icon usage
 import TimeAgo from "react-timeago"; // Your existing import
 import React, { useState, useEffect } from "react"; // Import useState and useEffect
