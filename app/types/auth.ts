@@ -9,6 +9,7 @@ export interface User {
 	email?: string; // User's email address (optional)
 	name?: string; // User's full name or display name (optional)
 	token: string; // Authentication token
+	profileImageUrl?: string;
 }
 
 /**

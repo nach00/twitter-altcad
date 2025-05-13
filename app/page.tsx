@@ -12,8 +12,8 @@ import { useAuth } from "./contexts/AuthContext";
 // Assuming TweetComposer and TweetCard are correctly pathed using aliases
 import TweetComposer from "@/components/TweetComposer/TweetComposer";
 import TweetCard from "@/components/TweetCard/TweetCard";
-import { Tweet, TweetAuthor } from "@/types/tweet"; // Import both Tweet and TweetAuthor
-import { User as AuthUser } from "@/types/auth"; // Import your main User type for AuthContext
+import { Tweet, TweetAuthor } from "@/app/types/tweet"; // Import both Tweet and TweetAuthor
+// import { User as AuthUser } from "@/app/types/auth"; // Import your main User type for AuthContext
 
 // --- Mock Data (Keep this or replace with actual data fetching) ---
 const FALLBACK_MOCK_USER_PROFILE_IMAGE =
