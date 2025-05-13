@@ -1,21 +1,15 @@
 // src/app/[username]/page.tsx
 
-import { use } from "react"; // Step 1: Import 'use'
+// No need to import 'use' from 'react' for params in an async Server Component
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-// The actual shape of the route parameters once resolved
-interface ResolvedRouteParams {
-	username: string;
-}
-
-// The props the Page component receives.
-// Based on the warning, `params` is (or will be treated as) a Promise.
-interface UserProfilePageServerProps {
-	params: ResolvedRouteParams; // Reflects what's actually passed
-	// params: Promise<ResolvedRouteParams>; // Step 2: params is a Promise
-	// If you were using searchParams, they might also be a Promise:
-	// searchParams?: Promise<{[key: string]: string | string[] | undefined}>;
+// The shape of the route parameters passed by Next.js
+interface UserProfilePageProps {
+	params: {
+		username: string; // This directly matches the dynamic segment [username]
+	};
+	// searchParams?: { [key: string]: string | string[] | undefined }; // If you were using searchParams
 }
 
 // Define a generic structure for the profile data this page will display.
@@ -68,19 +62,20 @@ const MOCK_USER_DATABASE: Record<string, DisplayableProfileData> = {
 async function fetchMockUserProfile(
 	username: string,
 ): Promise<DisplayableProfileData | null> {
-	await new Promise((resolve) => setTimeout(resolve, Math.random() * 200 + 50));
+	// Simulate API delay
+	await new Promise((resolve) => setTimeout(resolve, Math.random() * 100 + 50));
 	const normalizedUsername = username.toLowerCase();
 	const user = MOCK_USER_DATABASE[normalizedUsername];
 	return user ? { ...user } : null;
 }
 // --- End Mock Data Store ---
 
+// Server Component - can be async
 export default async function UserProfilePage({
-	params: paramsPromise,
-}: UserProfilePageServerProps) {
-	// Step 3: Use React.use() to unwrap the params Promise
-	const actualParams: ResolvedRouteParams = use(paramsPromise);
-	const { username: requestedUsername } = actualParams;
+	params,
+}: UserProfilePageProps) {
+	// Directly access username from params. No React.use() needed here for params.
+	const { username: requestedUsername } = params;
 
 	// Basic validation for the username parameter
 	if (
@@ -91,13 +86,15 @@ export default async function UserProfilePage({
 		console.warn(
 			`UserProfilePage: Invalid or empty username parameter: "${requestedUsername}"`,
 		);
-		notFound();
+		notFound(); // Renders the Next.js not-found UI
 	}
 
 	// Fetch profile data using the mock function
+	// `await` is allowed because this is an async Server Component
 	const profile: DisplayableProfileData | null =
 		await fetchMockUserProfile(requestedUsername);
 
+	// If no profile is found for the given username, render the not-found UI
 	if (!profile) {
 		console.log(
 			`UserProfilePage: Profile not found for username "${requestedUsername}".`,
@@ -105,7 +102,7 @@ export default async function UserProfilePage({
 		notFound();
 	}
 
-	// --- Direct Rendering of Profile Information (remains the same) ---
+	// --- Direct Rendering of Profile Information ---
 	return (
 		<div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
 			<main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
@@ -196,9 +193,10 @@ export default async function UserProfilePage({
 	);
 }
 
-// generateStaticParams should return an array of the RESOLVED params objects.
-// Its return type should be Promise<ResolvedRouteParams[]>.
-export async function generateStaticParams(): Promise<ResolvedRouteParams[]> {
+// generateStaticParams should return an array of objects matching the structure of `params`
+export async function generateStaticParams(): Promise<
+	Array<{ username: string }>
+> {
 	const usernamesToPrerender = Object.keys(MOCK_USER_DATABASE);
 
 	if (usernamesToPrerender.length === 0) {
@@ -208,9 +206,8 @@ export async function generateStaticParams(): Promise<ResolvedRouteParams[]> {
 		return [];
 	}
 
-	// Map to the ResolvedRouteParams shape
 	return usernamesToPrerender.map((username) => ({
-		username, // This matches ResolvedRouteParams
+		username,
 	}));
 }
 
