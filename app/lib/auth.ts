@@ -1,83 +1,123 @@
-// File: frontend/src/lib/auth.ts (or your equivalent path)
-"use client"; // If any functions here are intended for client-side only due to localStorage
+// app/lib/auth.ts (assuming this is the correct path within your Next.js app structure)
+"use client"; // Mark as client component module due to localStorage usage
 
-import axios, { AxiosError } from "axios";
-import { User, AuthError } from "../types/auth"; // Ensure this path is correct
+import axios, { AxiosError as AxiosErrorType } from "axios"; // Renamed for clarity
+import { User, AuthError } from "../types/auth"; // Adjust path as necessary
 
-// API URL for your Rails backend
-const API_URL =
-	process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/v1";
+// --- API Configuration ---
+
+/**
+ * Determines the base URL for API requests.
+ * - In production (when NEXT_PUBLIC_API_URL is not set or is a relative path like "/api/v1"),
+ *   it uses a relative path, assuming the API is served from the same origin as the frontend.
+ * - In development, it falls back to a default (e.g., http://localhost:3000/api/v1)
+ *   or uses NEXT_PUBLIC_API_URL if set (e.g., for testing against a staged backend).
+ */
+function getApiBaseUrl(): string {
+	const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+	if (envApiUrl) {
+		// If NEXT_PUBLIC_API_URL is set (could be absolute for dev/staging, or relative for prod)
+		return envApiUrl;
+	}
+	// Default for production (relative path if API is same-origin) or local dev fallback
+	return typeof window !== "undefined"
+		? "/api/v1"
+		: "http://localhost:3000/api/v1";
+	// The check for `typeof window` makes it safer for SSR/SSG if this file were ever imported server-side,
+	// though "use client" primarily scopes it. For pure client-side, "/api/v1" is usually fine for prod.
+}
+
+const API_BASE_URL = getApiBaseUrl();
+
+// --- Type Definitions for Backend Responses ---
+// These help in type-safe parsing of what the Rails backend sends.
+
+interface BackendUser {
+	// Define this based on what your Rails API's UserSerializer actually returns
+	// This should match the `Omit<User, "token">` usage if User type has no extra frontend-only fields.
+	id: number; // Or string, must match your `app/types/auth.ts User.id`
+	username: string;
+	email?: string;
+	name?: string;
+	profileImageUrl?: string | null;
+	// Any other fields your backend user object has
+}
+
+interface BackendAuthResponse {
+	user: BackendUser;
+	jwt: string; // Assuming backend sends token as 'jwt'
+}
+
+// --- Helper to Construct Frontend User ---
+function mapBackendToFrontendUser(backendResponse: BackendAuthResponse): User {
+	if (!backendResponse.user || typeof backendResponse.jwt !== "string") {
+		console.error(
+			"Invalid backend response structure for user mapping:",
+			backendResponse,
+		);
+		throw new Error("Received invalid user data from server.");
+	}
+	return {
+		...backendResponse.user, // Spread properties from backendUser
+		token: backendResponse.jwt, // Map 'jwt' to 'token'
+	};
+}
+
+// --- Helper to Handle API Errors ---
+function handleApiError(error: unknown, operationName: string): AuthError {
+	const axiosError = error as AxiosErrorType<Partial<AuthError>>; // Use Partial<AuthError> for safer access
+	let errorMessage = `An unknown error occurred during ${operationName}.`;
+	let specificErrors: AuthError["errors"] = undefined; // Match AuthError['errors'] type
+
+	if (axiosError.isAxiosError) {
+		if (axiosError.response && axiosError.response.data) {
+			const responseData = axiosError.response.data;
+			errorMessage = responseData.message || axiosError.message || errorMessage;
+			// Safely access 'errors' if it exists on responseData
+			if (responseData.errors !== undefined) {
+				specificErrors = responseData.errors;
+			}
+		} else {
+			errorMessage = axiosError.message || errorMessage;
+		}
+	} else if (error instanceof Error) {
+		errorMessage = error.message;
+	}
+
+	console.error(
+		`${operationName} API Error:`,
+		errorMessage,
+		specificErrors || "",
+	);
+	return { message: errorMessage, errors: specificErrors }; // Return a structured AuthError
+}
+
+// --- Authentication Functions ---
 
 /**
  * Logs in a user.
- * Stores the user object (which includes the token, mapped from 'jwt') in localStorage.
- * @param email - User's email
- * @param password - User's password
- * @returns A Promise resolving to the User object (frontend format).
+ * Stores the user object (which includes the token) in localStorage.
  */
 export const login = async (email: string, password: string): Promise<User> => {
 	try {
-		// Define the expected backend response structure
-		interface BackendLoginResponse {
-			user: Omit<User, "token">; // User details without the token
-			jwt: string; // Token from backend
-		}
-
-		const response = await axios.post<BackendLoginResponse>(
-			`${API_URL}/login`,
-			{ email, password },
+		const response = await axios.post<BackendAuthResponse>(
+			// Expect BackendAuthResponse
+			`${API_BASE_URL}/login`, // Ensure this path matches your Rails API login route
+			{ user: { email, password } }, // Adjust payload if Rails expects different (e.g., just email, password)
 		);
-
-		// Check if the backend response has the expected structure (user object and jwt string)
-		if (
-			response.data &&
-			response.data.user &&
-			typeof response.data.jwt === "string"
-		) {
-			// Construct the user object for the frontend, mapping 'jwt' to 'token'
-			const frontendUser: User = {
-				...response.data.user, // Spread user details (id, username, email, etc.)
-				token: response.data.jwt, // Add the token under the 'token' key
-			};
-			localStorage.setItem("user", JSON.stringify(frontendUser));
-			console.log(
-				"Login successful, user data stored in localStorage:",
-				frontendUser,
-			);
-			return frontendUser; // Return the user object in the frontend's expected format
-		} else {
-			// This case implies the backend response format is not as expected
-			console.error(
-				"Login response missing user data or jwt token:",
-				response.data,
-			);
-			throw new Error("Login failed: Invalid response format from server.");
-		}
+		const frontendUser = mapBackendToFrontendUser(response.data);
+		localStorage.setItem("user", JSON.stringify(frontendUser));
+		console.log("Login successful:", frontendUser);
+		return frontendUser;
 	} catch (error) {
-		const axiosError = error as AxiosError<AuthError>;
-		// Use the message from the error object if it exists, otherwise use a generic message
-		const errorMessage =
-			(axiosError.response?.data as AuthError)?.message ||
-			axiosError.message ||
-			"An unknown error occurred during login";
-		console.error(
-			"Login API Error:",
-			axiosError.response?.data || axiosError.message,
-		);
-		throw {
-			message: errorMessage,
-			errors: (axiosError.response?.data as AuthError)?.errors,
-		};
+		throw handleApiError(error, "login");
 	}
-}; // Ensure this function assignment is properly terminated with a semicolon.
+};
 
 /**
  * Signs up a new user.
- * Stores the user object (which includes the token, mapped from 'jwt') in localStorage.
- * @param username - User's username
- * @param email - User's email
- * @param password - User's password
- * @returns A Promise resolving to the User object (frontend format).
+ * Stores the user object (which includes the token) in localStorage.
  */
 export const signup = async (
 	username: string,
@@ -85,59 +125,20 @@ export const signup = async (
 	password: string,
 ): Promise<User> => {
 	try {
-		// Define the expected backend response structure (similar to login)
-		interface BackendSignupResponse {
-			user: Omit<User, "token">;
-			jwt: string;
-		}
-
-		const payload = {
-			user: { username, email, password }, // Ensure this matches Rails backend expectation
-		};
-		const response = await axios.post<BackendSignupResponse>(
-			`${API_URL}/signup`,
+		const payload = { user: { username, email, password } }; // Common Rails convention
+		const response = await axios.post<BackendAuthResponse>(
+			// Expect BackendAuthResponse
+			`${API_BASE_URL}/signup`, // Ensure this path matches your Rails API signup route
 			payload,
 		);
-
-		if (
-			response.data &&
-			response.data.user &&
-			typeof response.data.jwt === "string"
-		) {
-			// Construct the user object for the frontend
-			const frontendUser: User = {
-				...response.data.user,
-				token: response.data.jwt,
-			};
-			localStorage.setItem("user", JSON.stringify(frontendUser));
-			console.log(
-				"Signup successful, user data stored in localStorage:",
-				frontendUser,
-			);
-			return frontendUser;
-		} else {
-			console.error(
-				"Signup response missing user data or jwt token:",
-				response.data,
-			);
-			throw new Error("Signup failed: Invalid response format from server.");
-		}
+		const frontendUser = mapBackendToFrontendUser(response.data);
+		localStorage.setItem("user", JSON.stringify(frontendUser));
+		console.log("Signup successful:", frontendUser);
+		return frontendUser;
 	} catch (error) {
-		const axiosError = error as AxiosError<AuthError>;
-		const errorMessage =
-			(axiosError.response?.data as AuthError)?.message ||
-			axiosError.message ||
-			"An unknown error occurred during signup";
-		console.error(
-			"Signup API Error:",
-			axiosError.response?.data || axiosError.message,
-		);
-		throw {
-			message: errorMessage,
-			errors: (axiosError.response?.data as AuthError)?.errors,
-		};
+		throw handleApiError(error, "signup");
 	}
-}; // Ensure this function assignment is properly terminated with a semicolon.
+};
 
 /**
  * Logs out the current user by removing their data from localStorage.
@@ -145,66 +146,56 @@ export const signup = async (
 export const logout = (): void => {
 	if (typeof window !== "undefined") {
 		localStorage.removeItem("user");
-		console.log("User logged out, data removed from localStorage.");
+		console.log("User logged out.");
+		// Redirection is typically handled by the calling component or context
 	}
-	// Redirection should be handled by the AuthContext or the component calling logout.
-}; // Ensure this function assignment is properly terminated with a semicolon.
+};
 
 /**
  * Retrieves the current user from localStorage.
- * Includes robust error handling for JSON parsing and basic validation.
- * The stored user object is expected to have a 'token' property.
- * @returns The User object if found and valid, otherwise null.
+ * Validates the structure of the stored user object.
  */
 export const getCurrentUser = (): User | null => {
-	if (typeof window === "undefined") {
-		// Ensure localStorage is available (client-side)
-		return null;
-	}
+	if (typeof window === "undefined") return null;
 
 	const userStr = localStorage.getItem("user");
-	if (userStr) {
-		try {
-			const user = JSON.parse(userStr) as User;
-			// Basic validation: check for essential fields like id, username, and token.
-			// This 'token' is what the frontendUser object (stored above) should have.
-			// Carefully check this 'if' condition in your local file for any typos or missing parts.
-			if (
-				user &&
-				typeof user.id !== "undefined" &&
-				typeof user.username === "string" &&
-				typeof user.token === "string"
-			) {
-				return user;
-			} else {
-				console.warn(
-					"Parsed user data from localStorage is invalid or incomplete (expected 'token' property).",
-					user,
-				);
-				localStorage.removeItem("user"); // Clear corrupted/invalid data
-				return null;
-			}
-		} catch (error) {
-			console.error("Failed to parse user JSON from localStorage:", error);
-			localStorage.removeItem("user"); // Clear corrupted data
+	if (!userStr) return null;
+
+	try {
+		const user = JSON.parse(userStr) as User; // Assume it matches frontend User type
+		// Validate essential properties expected in the frontend User object
+		if (
+			user &&
+			typeof user.id !== "undefined" && // Check type based on your User.id (number or string)
+			typeof user.username === "string" &&
+			typeof user.token === "string" // Crucial for auth
+		) {
+			return user;
+		} else {
+			console.warn(
+				"Stored user data is invalid or incomplete. Clearing.",
+				user,
+			);
+			localStorage.removeItem("user");
 			return null;
 		}
+	} catch (parseError) {
+		console.error(
+			"Failed to parse user JSON from localStorage. Clearing.",
+			parseError,
+		);
+		localStorage.removeItem("user");
+		return null;
 	}
-	return null;
-}; // Ensure this function assignment is properly terminated with a semicolon.
+};
 
 /**
  * Generates an authorization header if the user is logged in.
- * Assumes the token is stored as part of the user object (as 'token') in localStorage.
- * @returns An object containing the Authorization header, or an empty object.
  */
 export const authHeader = (): Record<string, string> => {
-	const user = getCurrentUser(); // This now uses the robust version
-
-	// User object from localStorage should have user.token
+	const user = getCurrentUser();
 	if (user && user.token) {
 		return { Authorization: `Bearer ${user.token}` };
-	} else {
-		return {};
 	}
-}; // Ensure this function assignment is properly terminated with a semicolon.
+	return {};
+};
