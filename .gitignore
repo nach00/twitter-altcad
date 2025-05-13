@@ -1,4 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ruby
+/twitter_altcad_api/tmp
+/twitter_altcad_api/vendor
+/twitter_altcad_api/.config
+/twitter_altcad_api/coverage/
+/twitter_altcad_api/InstalledFiles
+/twitter_altcad_api/pkg/
+/twitter_altcad_api/spec/reports/
+/twitter_altcad_api/spec/examples.txt
+/twitter_altcad_api/test/tmp/
+/twitter_altcad_api/test/version_tmp/
+/twitter_altcad_api/tmp/
 
 # dependencies
 /node_modules
