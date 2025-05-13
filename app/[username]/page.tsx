@@ -1,15 +1,18 @@
 // src/app/[username]/page.tsx
 
-// No need to import 'use' from 'react' for params in an async Server Component
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-// The shape of the route parameters passed by Next.js
-interface UserProfilePageProps {
-	params: {
-		username: string; // This directly matches the dynamic segment [username]
-	};
-	// searchParams?: { [key: string]: string | string[] | undefined }; // If you were using searchParams
+// The shape of the route parameters AFTER they are resolved from the Promise
+interface ResolvedRouteParams {
+	username: string;
+}
+
+// The props the Page component receives from Next.js
+// `params` is a Promise that will resolve to ResolvedRouteParams
+interface UserProfilePageServerProps {
+	params: Promise<ResolvedRouteParams>;
+	// searchParams?: Promise<{ [key: string]: string | string[] | undefined }>; // If you use searchParams
 }
 
 // Define a generic structure for the profile data this page will display.
@@ -27,7 +30,7 @@ interface DisplayableProfileData {
 // --- Mock Data Store and Fetching Logic (remains the same) ---
 const MOCK_USER_DATABASE: Record<string, DisplayableProfileData> = {
 	alice_wonder: {
-		id: "user_001",
+		/* ... */ id: "user_001",
 		username: "alice_wonder",
 		fullName: "Alice Wonderland",
 		bio: "Curiouser and curiouser! Exploring the digital rabbit hole.",
@@ -38,7 +41,7 @@ const MOCK_USER_DATABASE: Record<string, DisplayableProfileData> = {
 		joinDate: "2022-05-10",
 	},
 	bob_builder: {
-		id: "user_002",
+		/* ... */ id: "user_002",
 		username: "bob_builder",
 		fullName: "Bob The Builder",
 		bio: "Can we fix it? Yes, we can! Building cool stuff with code.",
@@ -49,7 +52,7 @@ const MOCK_USER_DATABASE: Record<string, DisplayableProfileData> = {
 		joinDate: "2021-11-23",
 	},
 	charlie_brown: {
-		id: "user_003",
+		/* ... */ id: "user_003",
 		username: "charlie_brown",
 		fullName: "Charlie Brown",
 		bio: "Good grief! Just trying my best.",
@@ -62,7 +65,6 @@ const MOCK_USER_DATABASE: Record<string, DisplayableProfileData> = {
 async function fetchMockUserProfile(
 	username: string,
 ): Promise<DisplayableProfileData | null> {
-	// Simulate API delay
 	await new Promise((resolve) => setTimeout(resolve, Math.random() * 100 + 50));
 	const normalizedUsername = username.toLowerCase();
 	const user = MOCK_USER_DATABASE[normalizedUsername];
@@ -72,37 +74,31 @@ async function fetchMockUserProfile(
 
 // Server Component - can be async
 export default async function UserProfilePage({
-	params,
-}: UserProfilePageProps) {
-	// Directly access username from params. No React.use() needed here for params.
-	const { username: requestedUsername } = params;
+	params: paramsPromise,
+}: UserProfilePageServerProps) {
+	// Await the params Promise to get the resolved parameters
+	const resolvedParams: ResolvedRouteParams = await paramsPromise;
+	const { username: requestedUsername } = resolvedParams;
 
-	// Basic validation for the username parameter
 	if (
 		!requestedUsername ||
 		typeof requestedUsername !== "string" ||
 		requestedUsername.trim() === ""
 	) {
-		console.warn(
-			`UserProfilePage: Invalid or empty username parameter: "${requestedUsername}"`,
-		);
-		notFound(); // Renders the Next.js not-found UI
+		console.warn(`UserProfilePage: Invalid username: "${requestedUsername}"`);
+		notFound();
 	}
 
-	// Fetch profile data using the mock function
-	// `await` is allowed because this is an async Server Component
 	const profile: DisplayableProfileData | null =
 		await fetchMockUserProfile(requestedUsername);
 
-	// If no profile is found for the given username, render the not-found UI
 	if (!profile) {
 		console.log(
-			`UserProfilePage: Profile not found for username "${requestedUsername}".`,
+			`UserProfilePage: Profile not found for "${requestedUsername}".`,
 		);
 		notFound();
 	}
 
-	// --- Direct Rendering of Profile Information ---
 	return (
 		<div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
 			<main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
@@ -175,7 +171,6 @@ export default async function UserProfilePage({
 						)}
 					</div>
 				</header>
-
 				<section className="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-6 md:p-8">
 					<h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
 						Activity
@@ -193,23 +188,16 @@ export default async function UserProfilePage({
 	);
 }
 
-// generateStaticParams should return an array of objects matching the structure of `params`
+// generateStaticParams should return an array of the *resolved* parameter objects
+// Its return type should be `Promise<Array<ResolvedRouteParams>>` or simply `Promise<ResolvedRouteParams[]>`
 export async function generateStaticParams(): Promise<
-	Array<{ username: string }>
+	Array<ResolvedRouteParams>
 > {
 	const usernamesToPrerender = Object.keys(MOCK_USER_DATABASE);
-
 	if (usernamesToPrerender.length === 0) {
-		console.warn(
-			"generateStaticParams (UserProfilePage): No mock usernames found to pre-render.",
-		);
 		return [];
 	}
-
 	return usernamesToPrerender.map((username) => ({
-		username,
+		username, // This is the ResolvedRouteParams shape
 	}));
 }
-
-// Optional: Control revalidation behavior for this page
-// export const revalidate = 3600; // Revalidate this page at most every hour
