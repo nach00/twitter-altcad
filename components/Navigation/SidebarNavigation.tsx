@@ -1,36 +1,30 @@
-// ~/github/twitter-altcad/components/Navigation/SidebarNavigation.tsx
-
+// components/Navigation/SidebarNavigation.tsx
+// (Adjust path if this file is located elsewhere, e.g., app/components/Navigation/...)
 "use client";
 
-import React from "react";
+import React from "react"; // Removed unused imports like useState, useEffect
 import Link from "next/link";
 import Image from "next/image";
 import {
 	Home,
 	Bell,
 	Mail,
-	User,
+	User as LucideUser, // Renamed to avoid conflict with potential local User type
 	Hash,
 	LogOut,
 	LucideProps,
+	UserPlus, // Added for optional signup link
 } from "lucide-react";
-import { useAuth } from "../../app/contexts/AuthContext"; // Ensure this path is correct
-import { useRouter } from "next/navigation";
-// import { usePathname } from "next/navigation"; // Uncomment to implement active link highlighting
+
+// Adjust import paths as necessary
+import { useAuth } from "../../app/contexts/AuthContext"; // Path relative to this file
+import { User as AppUser } from "../../app/types/auth"; // Import the centralized User type
+// import { useRouter } from "next/navigation";
+// import { usePathname } from "next/navigation"; // For active link highlighting
 
 // --- Type Definitions ---
 
-// IMPORTANT: Replace this with your actual User type from app/types/auth.ts or AuthContext
-// This is a placeholder based on usage in this component.
-interface CurrentUser {
-	id: string | number; // Assuming ID can be string or number from your backend
-	username: string;
-	name?: string | null;
-	profileImageUrl?: string | null;
-	// Add any other properties your currentUser object might have from AuthContext
-}
-
-// Type for the props of each navigation item component
+// Props for the NavItem component
 interface NavItemProps {
 	href: string;
 	icon: React.ReactNode;
@@ -39,12 +33,14 @@ interface NavItemProps {
 	onClick?: () => void;
 }
 
-// Type for the configuration object of each navigation link
+// Configuration for individual navigation links
 interface NavLinkConfig {
 	id: string;
 	label: string;
-	IconComponent: React.ComponentType<LucideProps>; // Type for Lucide icon components
+	IconComponent: React.ComponentType<LucideProps>;
 	href: string;
+	requiresAuth?: boolean; // Optional: to hide/show based on auth state
+	hideWhenAuth?: boolean; // Optional: to hide when authenticated (e.g. Login link)
 }
 
 // --- Reusable Components ---
@@ -76,7 +72,6 @@ const NavItem: React.FC<NavItemProps> = ({
 			</button>
 		);
 	}
-
 	return (
 		<Link href={href} className={itemClasses}>
 			<span className="mr-4 shrink-0">{icon}</span>
@@ -88,13 +83,17 @@ const NavItem: React.FC<NavItemProps> = ({
 // --- Helper Function for Navigation Links ---
 
 const getNavLinkConfigs = (
-	currentUser: CurrentUser | null,
+	currentUser: AppUser | null, // Use imported AppUser type
 	isAuthenticated: boolean,
 ): NavLinkConfig[] => {
+	// Profile link changes based on authentication and currentUser.id
+	// Ensure currentUser.id's type (number or string) is consistent with how routes are defined.
+	// If your profile route is /profile/[username], you'd use currentUser.username.
+	// If it's /profile/[id] where id is the numeric DB ID, then currentUser.id is fine.
 	const profileHref =
 		isAuthenticated && currentUser ? `/profile/${currentUser.id}` : "/login";
 
-	return [
+	const links: NavLinkConfig[] = [
 		{ id: "home", label: "Home", IconComponent: Home, href: "/" },
 		{ id: "explore", label: "Explore", IconComponent: Hash, href: "/explore" },
 		{
@@ -102,31 +101,44 @@ const getNavLinkConfigs = (
 			label: "Notifications",
 			IconComponent: Bell,
 			href: "/notifications",
+			requiresAuth: true,
 		},
 		{
 			id: "messages",
 			label: "Messages",
 			IconComponent: Mail,
 			href: "/messages",
+			requiresAuth: true,
 		},
-		{ id: "profile", label: "Profile", IconComponent: User, href: profileHref },
+		{
+			id: "profile",
+			label: "Profile",
+			IconComponent: LucideUser,
+			href: profileHref,
+			requiresAuth: true,
+		},
 	];
+
+	return links.filter((link) => {
+		if (link.requiresAuth && !isAuthenticated) return false;
+		if (link.hideWhenAuth && isAuthenticated) return false;
+		return true;
+	});
 };
 
 // --- Main Sidebar Navigation Component ---
 
 export default function SidebarNavigation() {
-	// Ensure useAuth() hook provides typed values, especially currentUser.
-	const { currentUser, isAuthenticated, logout, loading } = useAuth();
-	const router = useRouter();
+	const { currentUser, isAuthenticated, logout, isLoading } = useAuth(); // Use `isLoading` from context
+	// const router = useRouter(); // Only needed if handleLogout isn't just calling context's logout
 	// const pathname = usePathname(); // For active link highlighting
 
-	const handleLogout = () => {
-		logout(); // This should clear context and any persisted auth state
-		router.push("/login");
-	};
+	// The logout function from context should handle navigation, so local router.push might be redundant.
+	// const handleLocalLogout = () => {
+	//  logout(); // This should clear context, localStorage, and redirect via AuthContext's logout
+	// };
 
-	if (loading) {
+	if (isLoading) {
 		return (
 			<aside className="flex flex-col h-full p-4 w-full max-w-xs border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
 				<div className="mb-6 p-2">
@@ -136,18 +148,18 @@ export default function SidebarNavigation() {
 					{[...Array(5)].map((_, index) => (
 						<div
 							key={index}
-							className="h-[52px] rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" // Adjusted for p-3 + icon/text height
+							className="h-[52px] rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"
 						/>
 					))}
 				</div>
 				<div className="mt-auto pt-4">
-					<div className="h-[68px] rounded-lg bg-gray-200 dark:bg-gray-700 animate-pulse" />{" "}
-					{/* User info + logout skeleton */}
+					<div className="h-[68px] rounded-lg bg-gray-200 dark:bg-gray-700 animate-pulse" />
 				</div>
 			</aside>
 		);
 	}
 
+	// Pass the correctly typed currentUser to getNavLinkConfigs
 	const navLinks = getNavLinkConfigs(currentUser, isAuthenticated);
 
 	return (
@@ -173,8 +185,9 @@ export default function SidebarNavigation() {
 			<div className="mt-auto pt-4">
 				{isAuthenticated && currentUser ? (
 					<div className="flex flex-col items-start space-y-3">
+						{/* User Info / Link to Profile */}
 						<Link
-							href={`/profile/${currentUser.id}`}
+							href={`/profile/${currentUser.id}`} // Ensure `currentUser.id` is the correct param for your profile route
 							className="flex items-center space-x-3 p-2 rounded-lg w-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
 						>
 							{currentUser.profileImageUrl ? (
@@ -187,7 +200,7 @@ export default function SidebarNavigation() {
 								/>
 							) : (
 								<div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-white dark:text-gray-300">
-									<User size={20} aria-hidden="true" />
+									<LucideUser size={20} aria-hidden="true" />
 								</div>
 							)}
 							<div className="overflow-hidden">
@@ -199,27 +212,27 @@ export default function SidebarNavigation() {
 								</p>
 							</div>
 						</Link>
+						{/* Logout Button */}
 						<NavItem
 							icon={<LogOut size={24} aria-hidden="true" />}
 							label="Logout"
-							onClick={handleLogout}
+							onClick={logout} // Use the logout function directly from AuthContext
 							href="#" // href is not used due to onClick, but required by NavItemProps
 						/>
 					</div>
 				) : (
+					// Auth Actions for Unauthenticated Users
 					<div className="space-y-1">
 						<NavItem
 							href="/login"
-							icon={<User size={24} aria-hidden="true" />}
+							icon={<LucideUser size={24} aria-hidden="true" />}
 							label="Login"
 						/>
-						{/* Optional: Add Signup NavItem if desired
-            <NavItem
-              href="/signup"
-              icon={<UserPlus size={24} aria-hidden="true" />} // Example, ensure UserPlus is imported
-              label="Sign Up"
-            />
-            */}
+						<NavItem
+							href="/signup"
+							icon={<UserPlus size={24} aria-hidden="true" />}
+							label="Sign Up"
+						/>
 					</div>
 				)}
 			</div>
