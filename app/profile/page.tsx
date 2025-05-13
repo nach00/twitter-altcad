@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Calendar, MapPin, Link as LinkIcon, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import DefaultLayout from "../layouts/DefaultLayout";
-import TweetCard from "@/components/TweetCard/TweetCard";
+import TweetCard from "../../components/TweetCard/TweetCard";
 
 // Mock data for demonstration
 const MOCK_PROFILE = {

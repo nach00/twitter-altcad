@@ -68,11 +68,12 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
 							</span>
 							{/* Conditional rendering for TimeAgo */}
 							{isClient ? (
-								<TimeAgo
-									date={tweet.createdAt}
-									className="text-sm text-gray-500 dark:text-gray-400 hover:underline"
-									title={new Date(tweet.createdAt).toLocaleString()} // Show full date on hover
-								/>
+								<span className="text-sm text-gray-500 dark:text-gray-400 hover:underline">
+									<TimeAgo
+										date={tweet.createdAt}
+										title={new Date(tweet.createdAt).toLocaleString()} // Show full date on hover
+									/>
+								</span>
 							) : (
 								// Placeholder during SSR and initial client render before hydration
 								// You can make this a more sophisticated skeleton/placeholder if desired
