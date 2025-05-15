@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :users, only: [ :index, :show ] # :create is handled by /signup
 
       # --- Other API Resources ---
+
       resources :tweets, only: [ :index, :create, :show, :destroy ]
       resources :likes, only: [ :create, :destroy ]
       resources :bookmarks, only: [ :create, :destroy ]
