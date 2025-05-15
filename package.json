@@ -8,6 +8,7 @@
 		"build:frontend": "next build",
 		"start": "next start",
 		"lint": "next lint",
+
 		"heroku-postbuild": "echo '>>> Starting Next.js frontend build...' && npm run build:frontend && echo '>>> Next.js build complete.' && echo '>>> Preparing Rails public directory...' && rm -rf ./twitter_altcad_api/public/_next && rm -f ./twitter_altcad_api/public/index.html && mkdir -p ./twitter_altcad_api/public/_next/static && echo '>>> Copying Next.js static assets to Rails public directory...' && cp -r ./.next/static/* ./twitter_altcad_api/public/_next/static/ && echo '>>> Finished copying static assets.' && echo '>>> NOTE: Rails will need to serve an entry HTML file that loads these assets.'"
 	},
 	"dependencies": {
