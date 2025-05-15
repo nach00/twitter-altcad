@@ -52,6 +52,7 @@ function mapBackendToFrontendUser(backendResponse: BackendAuthResponse): User {
 	return {
 		...otherBackendDetails,
 		token: backendResponse.jwt,
+
 		profileImageUrl: profileImageUrl === null ? undefined : profileImageUrl,
 	};
 }
